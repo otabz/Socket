@@ -1,0 +1,26 @@
+  <header class="global-header">
+        <div>
+            <nav class="global-nav">
+                <span class="logo"><h1>c<span class="fa fa-mobile" aria-hidden="true"></span>arge</h1>
+                <sup>Prepaid calling cards</sup></span>
+            </nav>
+
+        </div>
+
+    </header>
+    <section class="login">
+
+        <form id="login-form" accept-charset="utf-8" action="{{to}}">
+            <h1>Members Area</h1>
+            <input type="text" value="" placeholder="Email or Username" tabindex="20" ng-model="username" required>
+            <div class="password-container">
+                <input type="password" placeholder="Password" tabindex="21" ng-model="password" required>
+                <span>
+                    (
+                    <a href="">forgot?</a>
+                    )
+                </span>
+            </div>
+            <button class="button submit" data-analytics="sign-in" ng-click="submit()">Log in</button>
+        </form>
+    </section>

@@ -1,0 +1,133 @@
+<htm>
+    <header>
+        <link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style-home.css">
+        <script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script> var app = angular.module('charge', []);
+            app.controller('home', function($scope) {
+                $scope.card = {
+                    price: 'Welcome!',
+                    validity: 'Please make a selection',
+                    by: ''
+                };
+                $scope.receipt = {
+                    carrier: ' . ',
+                    price: ' . ',
+                    validity: 'No selection',
+                    serial: ' . '
+                };
+                $scope.select = function(price, validity, by) {
+                    $scope.card.price = price;
+                    $scope.card.validity = 'Valid for ' + validity + ' days';
+                    $scope.card.by = by;
+                    $scope.receipt.carrier = 'STC';
+                   
+                    
+                    if (price == "Welcome!") {
+                        $scope.receipt.price = 0;
+                        $scope.receipt.validity = 'No selection';
+                        $scope.receipt.serial = ' . ';
+                    } else {
+                         $scope.receipt.price = price;
+                         $scope.receipt.validity = new Date() + validity;
+                         $scope.receipt.serial = validity + '000098686';
+                    }
+                    
+                    
+                };
+            });
+        </script>
+    </header>
+
+    <body ng-app="charge" ng-controller="home">
+
+        <table>
+            <tr>
+                <td width="2%">
+                    <div class="icon-bar">
+                        <a class="active" href="#"><i class="fa fa-home"></i></a>
+                        <a href="#"><i class="fa fa-search"></i></a>
+                    </div>
+                </td>
+                <td width="56%">
+
+
+                    <header class="global-header">
+                        <div>
+
+                            <nav class="global-nav">
+
+                                <section class="dash" ng-style="{'background-image': 'url(' + card.by + ')'}">
+                                    <article>
+                                        <h3>{{card.price}}</h3>
+                                        <p>{{card.validity}}</p>
+                                    </article>
+
+                                </section>
+                            </nav>
+
+                        </div>
+                    </header>
+                    <section class="login">
+                        <table>
+                            <tr>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 10 /-', '5', 'STC-logo.png')"><h1>10</h1></button></td>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 20 /-', '30', 'STC-logo.png')"><h1>20</h1></button></td>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 30 /-', '45', 'STC-logo.png')"><h1>30</h1></button></td>
+
+                                <td rowspan="2"><button class="button submit print" data-analytics="sign-in" type="submit" ng-show="card.price != 'Welcome!'"><h3>Print</h3></button></td>
+                            </tr>
+
+                            <tr>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 50 /-', '60', 'STC-logo.png')"><h1>50</h1></button></td>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 100 /-', '120', 'STC-logo.png')"><h1>100</h1></button></td>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 200 /-', '150', 'STC-logo.png')"><h1>200</h1></button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="button submit" data-analytics="sign-in" type="submit" ng-click="select('SR 300 /-', '300', 'STC-logo.png')"><h1>300</h1></button></td>
+
+                                <td> <button class="button submit cancel" data-analytics="sign-in" type="submit" ng-show="card.price != 'Welcome!'" ng-click="select('Welcome!', 'Please make a seletion', '')"><span class="fa fa-long-arrow-left"></span><h3>Cancel</h3></button></td>
+                            </tr>
+                        </table>
+                    </section>
+                </td>
+                <td>
+                    <div class="verticalLine">
+
+                    </div>
+                    <!-- Each sheet element should have the class "sheet" -->
+                    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+                </td>
+                <td>
+                    <section class="login">
+                        <section class="receipt">
+                            <article>
+                                <h1>c<span class="fa fa-mobile" aria-hidden="true"></span>arge<p class="receipt-p" align="center">Prepaid calling cards</p></h1> </article>
+                            <article>
+                                <h3>{{receipt.carrier}}</h3>
+                                <p>Telecom</p>
+                                <h3>{{receipt.price}}</h3>
+                                <p>{{receipt.validity}}</p>
+                                <h3>{{receipt.serial}}</h3>
+                                <p>Pin Serial</p>
+                                </br>
+                                <p>......................</p>
+                            <div ng-show="card.price != 'Welcome!'">
+                                <h4>*155*PIN*ID Number# Press <span class="fa fa-phone" aria-hidden="true"></span></h4>
+                                <p>Refill</p></div>
+                                <div ng-show="card.price != 'Welcome!'">
+                                <h4 ng-show="card.price != 'Welcome!'">*166*PINr# Press <span class="fa fa-phone" aria-hidden="true"></span></h4>
+                                    <p>Balance</p></div>
+
+                            </article>
+
+                        </section>
+                    </section>
+                </td>
+            </tr>
+        </table>
+    </body>
+</htm>

@@ -1,0 +1,7 @@
+/target/
+/.myeclipse/
+/bin/
+/.settings/
+.classpath
+.project
+.tern-project

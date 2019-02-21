@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <script>
+        var app = angular.module('charge', ['ngRoute']);
+         app.config(function($routeProvider) {
+            $routeProvider
+                .when("/", {
+                    controller: "login",
+                    templateUrl: "login.html"
+                })
+                .when("/home", {
+                    controller: "home",
+                    templateUrl: "home.html"
+                })
+                .otherwise({ redirectTo: "/login"});
+        });
+        app.controller('login', function($scope, $location) {
+            $scope.username = 'test';
+            $scope.password = '12345678'
+            $scope.to = '';
+            $scope.submit = function() {
+                
+                if ($scope.username == 'test' && $scope.password == '12345678') {
+                   $scope.to = "dashboard.html"
+                }
+            };
+        });
+        app.controller('home', function($scope) {
+                $scope.card = {
+                    price: 'Welcome!',
+                    validity: 'Please make a selection',
+                    by: ''
+                };
+                $scope.receipt = {
+                    carrier: ' . ',
+                    price: ' . ',
+                    validity: 'No selection',
+                    serial: ' . '
+                };
+                $scope.select = function(price, validity, by) {
+                    $scope.card.price = price;
+                    $scope.card.validity = validity;
+                    $scope.card.by = by;
+                };
+            });
+    </script>
+</head>
+
+<body ng-app="charge">
+  <div ng-view></div>
+</body>
+
+</html>
